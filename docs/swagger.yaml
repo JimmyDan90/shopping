@@ -1,0 +1,54 @@
+definitions:
+  api_helper.ErrorResponse:
+    properties:
+      errorMessage:
+        type: string
+    type: object
+  user.CreateUserRequest:
+    properties:
+      password:
+        type: string
+      password2:
+        type: string
+      username:
+        type: string
+    type: object
+  user.CreateUserResponse:
+    properties:
+      username:
+        type: string
+    type: object
+info:
+  contact:
+    name: golang gin mysql
+  description: 电商练手demo
+  license: {}
+  title: 电商练手demo
+  version: "1.0"
+paths:
+  /user:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: user information
+        in: body
+        name: CreateUserRequest
+        required: true
+        schema:
+          $ref: '#/definitions/user.CreateUserRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/user.CreateUserResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/api_helper.ErrorResponse'
+      summary: 根据给定的用户名和密码创建用户
+      tags:
+      - Auth
+swagger: "2.0"

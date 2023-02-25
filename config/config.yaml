@@ -1,0 +1,10 @@
+Env: "dev"
+
+DatabaseSettings:
+  DatabaseURI: "root:19901112@tcp(127.0.0.1:3306)/go_database?parseTime=True&loc=Local"
+  DatabaseName: "go_database"
+  Username: "root"
+  Password: "19901112"
+
+JwtSettings:
+  SecretKey: "learning-gin-restful-api"
