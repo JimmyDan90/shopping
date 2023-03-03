@@ -8,3 +8,6 @@
 - 🚀 配置文件管理：viper
 - 🚀 用户鉴权: jwt-go
 - 🚀 热加载技术: air
+
+### 项目截图
+![image](https://github.com/JimmyDan90/shopping/blob/main/screenshot/screenshot.png?raw=true)
