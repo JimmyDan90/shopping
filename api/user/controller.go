@@ -33,7 +33,7 @@ func NewUserController(service *user.Service, appConfig *config.Configuration) *
 // @Produce json
 // @Param CreateUserRequest body CreateUserRequest true "user information"
 // @Success 201 {object} CreateUserResponse
-// @Failure 400 {object} api_helper.ErrorResponse
+// @Failure 400 {object} api_helper.ErrResponse
 // @Router /user [post]
 func (c *Controller) CreateUser(g *gin.Context) {
 	var req CreateUserRequest
@@ -53,6 +53,15 @@ func (c *Controller) CreateUser(g *gin.Context) {
 		})
 }
 
+// Login godoc
+// @Summary 根据用户名和密码登录
+// @Tags Auth
+// @Accept json
+// @Product json
+// @Param LoginRequest body LoginRequest true "user information"
+// @Success 200 {object} LoginResponse
+// @Failure 400 {object} api_helper.ErrResponse
+// Router /user/login [post]
 func (c *Controller) Login(g *gin.Context) {
 	var req LoginRequest
 	if err := g.ShouldBind(&req); err != nil {

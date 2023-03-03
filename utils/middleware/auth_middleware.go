@@ -6,8 +6,8 @@ import (
 	jwtHelper "shopping/utils/jwt"
 )
 
-// AuthMiddleware 管理员授权
-func AuthMiddleware(secretKey string) gin.HandlerFunc {
+// AuthAdminMiddleware 管理员授权
+func AuthAdminMiddleware(secretKey string) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		if c.GetHeader("Authorization") != "" {
 			decodeClaims := jwtHelper.VerifyToken(c.GetHeader("Authorization"), secretKey)

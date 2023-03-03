@@ -8,7 +8,7 @@ import (
 // HandlerError 错误处理
 func HandlerError(g *gin.Context, err error) {
 	g.JSON(
-		http.StatusBadRequest, ErrorResponse{
+		http.StatusBadRequest, ErrResponse{
 			Message: err.Error(),
 		})
 	g.Abort()

@@ -7,8 +7,8 @@ type Response struct {
 	Message string `json:"message"`
 }
 
-// ErrorResponse 响应错误结构体
-type ErrorResponse struct {
+// ErrResponse 响应错误结构体
+type ErrResponse struct {
 	Message string `json:"errorMessage"`
 }
 
