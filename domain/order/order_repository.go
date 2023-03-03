@@ -53,19 +53,24 @@ func (r *Repository) Create(ci *Order) error {
 }
 
 // GetAll 获得所有的订单
-func (r *Repository) GetAll(pageIndex, pageSize int, uid uint) ([]Order, int) {
+func (r *Repository) GetAll(pageIndex, pageSize int, uid uint) ([]EachOrder, int) {
 	var orders []Order
-	//var orderedItems []OrderedItem
+	var orderItems []OrderedItem
+	eachOrders := make([]EachOrder, 0, 1000)
 	var count int64
 	r.db.Where("IsCanceled = ?", 0).Where(
 		"UserID", uid).Offset((pageIndex - 1) * pageSize).Limit(pageSize).Find(&orders).Count(&count)
 	for _, order := range orders {
-		items := r.db.Where("OrderID = ?", order.ID).Find(&OrderedItem{})
+		items := r.db.Where("OrderID = ?", order.ID).Find(&orderItems)
 		fmt.Println("items: ", items)
+		eachOrders = append(eachOrders, EachOrder{
+			Order:        order,
+			OrderedItems: orderItems,
+		})
 		//	//r.db.Where("OrderID = ?", order.ID).Find(&orders[i].OrderedItems)
 		//	//for j, item := range orders[i].OrderedItems {
 		//	//	r.db.Where("ID = ?", item.ProductID).First(&orders[i].OrderedItems[j].Product)
 		//	//}
 	}
-	return orders, int(count)
+	return eachOrders, int(count)
 }

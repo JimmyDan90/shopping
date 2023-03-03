@@ -25,7 +25,7 @@ type OrderedItem struct {
 	IsCanceled bool
 }
 
-type CurrentOrder struct {
+type EachOrder struct {
 	Order
 	OrderedItems []OrderedItem
 }
